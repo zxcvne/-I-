@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 
+    /* ----------------------------
+    2025.11.06
+    Author: Hong Sumin(sumin5400@gmail.com)
+    Description: login page JavaScript
+    ----------------------------- */
+    -->
+
+    <!-- 
+        네이밍 컨벤션 가이드
+        ----------------------------------------
+
+        🏗️ 구조적 네이밍 (HTML / CSS)
+        ----------------------------------------
+        큰틀 > container ( ex. header-container, main-container )
+        작은 틀 > box ( ex. menu-box, image-box )
+        의미 있는 변수 이름 사용 ( input1 → userEmailInput )
+        boolean > is, has 로 통일 ( ex. isOpen, isRunning, isActive, hasItems, hasPermission )
+        class 이름은 - 로 연결 ( ex. menu-box, header-logo )
+        ----------------------------------------
+
+        🔧 DOM 선택자 변수명 규칙
+        ----------------------------------------
+        getElementById  > el prefix   ( ex. elSubmitBtn, elForm )
+        querySelector / querySelectorAll > qs / qsAll prefix  ( ex. qsMenuItems, qsAllCards )
+
+        예시)
+        const elSubmitBtn = document.getElementById('submitBtn');
+        const qsButton = document.querySelector('.button');
+
+        ----------------------------------------
+
+        💻 JavaScript 네이밍 규칙
+        ----------------------------------------
+        JavaScript 변수/함수 : camelCase  ( ex. userName, isLoggedIn, getUserInfo() )
+        JavaScript 클래스 : PascalCase  ( ex. UserModel, ApiService )
+        상수 : UPPER_SNAKE_CASE  ( ex. API_BASE_URL, MAX_RETRY_COUNT )
+        파일명 : kebab-case  ( ex. login-page.js, product-list.css )
+
+        ----------------------------------------
+
+        ⚙️ 이벤트 핸들러 네이밍 규칙
+        ----------------------------------------
+        핸들러 함수 : handle + 동작명  ( ex. handleLoginClick(), handleSubmitForm() )
+        이벤트 콜백 : on + 이벤트명   ( ex. onClickButton(), onScrollPage() )
+
+        사용자 행동을 직접 처리 → handle
+        시스템/이벤트 리스너에서 바로 쓰는 함수 → on
+
+        ----------------------------------------
+
+        🪄 State(상태) 변수 네이밍
+        ----------------------------------------
+        current, active 접두사 사용
+        const activeState = { isOpen: false, currentIndex: 0 }
+        let currentTab = 'home';
+        let currentUserId = null;
+
+        ----------------------------------------
+
+        🔁 비동기 함수 네이밍 (async / await)
+        ----------------------------------------
+        비동기 함수는 load, fetch, get 등의 접두사 사용
+
+        데이터 로드 : fetchUserData(), loadProducts()
+        API 요청 : getWeatherInfo(), postFormData()
+        렌더링용 : renderProductList()
+
+        ----------------------------------------
+
+        🧪 테스트 / 임시 요소 네이밍
+        ----------------------------------------
+        temp, demo 맨 앞에다가 사용 후 -
+        <div class="temp-container"></div>
+
+        ----------------------------------------
+        🎨 UI 기본 요소 네이밍 가이드
+        ----------------------------------------
+
+        [ button ]
+        - 기본 이름 : btn
+        - 예시 : loginBtn, submitBtn
+
+        [ list / item ]
+        - 리스트 그룹 : list (ex. menulist, product-list)
+        - 리스트 항목 : item (ex. menulist-items)
+
+        [ image / icon ]
+        - 이미지 : img-box, main-image, product-image
+        - 아이콘 : icon, (ex. icon-search, icon-close)
+
+        [ navigation ]
+        - 네비게이션 바 : nav-container, nav-box
+        - 네비게이션 항목 : nav-item, nav-link
+
+     -->
+    <div class="header-container">
+        <div class="header-title">ON RUNNING</div>
+        <div class="header-menu-box">
+            <div class="nav">
+                <div class="nav-item">HOME</div>
+                <div class="nav-item">ABOUT</div>
+                <div class="nav-item">SHOP</div>
+                <div class="nav-item">CONTACT</div>
+            </div>
+            <div class="btn-box">
+                <button id="signInBtn">SIGN IN</button>
+                <button id="signUpBtn">SIGN UP</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footage-container">
+        <div class="footage-logo-box">
+
+        </div>
+
+    </div>
+</body>
+
+</html>

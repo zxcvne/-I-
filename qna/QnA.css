@@ -1,0 +1,673 @@
+/* 기본 폰트 및 색상 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', 'Arial', sans-serif;
+    background: #f7f7f7;
+    color: #202020;
+    line-height: 1.6;
+}
+
+/* 헤더 스타일 */
+header {
+    background-color: #000;
+    color: white;
+    padding: 2rem;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+header nav {
+    font-size: 0.95rem;
+}
+
+header nav a {
+    color: #ccc;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* 섹션 공통 스타일 */
+section {
+    background: white;
+    margin: 2rem auto;
+    max-width: 900px;
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 헤딩 스타일 */
+h2 {
+    border-bottom: 3px solid #000;
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
+h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* 버튼 스타일 */
+.btn-primary {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 0.9rem 2rem;
+    margin-top: 1rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #333;
+}
+
+.btn-secondary {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 0.9rem 2rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #555;
+}
+
+.btn-submit {
+    background-color: #000;
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    margin-top: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #333;
+}
+
+/* 계정 접근 섹션 */
+.account-access p {
+    margin: 0.5rem 0 1rem 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* 러닝 정보 섹션 */
+.running-info ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.running-info li {
+    margin-bottom: 0.8rem;
+    line-height: 1.7;
+}
+
+/* FAQ 섹션 */
+.faq-section .faq-item {
+    margin-bottom: 1rem;
+}
+
+.faq-question {
+    width: 100%;
+    background-color: #eee;
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: #ddd;
+    transform: translateX(5px);
+}
+
+.faq-answer {
+    padding: 1.2rem;
+    background-color: #f9f9f9;
+    border-left: 4px solid #000;
+    display: none;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    border-radius: 0 4px 4px 0;
+    margin-top: -1px;
+}
+
+.faq-answer.active {
+    display: block;
+}
+
+/* 폼 스타일 */
+form {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #000;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* 질문 리스트 */
+.question-list {
+    margin-top: 1rem;
+}
+
+.question-item {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+}
+
+.question-item:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.question-item-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #000;
+}
+
+.question-item-content {
+    color: #555;
+    margin-bottom: 0.8rem;
+    line-height: 1.6;
+}
+
+.question-item-status {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.status-unanswered {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.status-answered {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.question-item-answer {
+    background-color: #f9f9f9;
+    padding: 0.8rem;
+    border-left: 3px solid #4caf50;
+    margin-bottom: 0.8rem;
+    border-radius: 0 4px 4px 0;
+}
+
+.question-item-answer strong {
+    color: #4caf50;
+}
+
+.question-item-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-answer {
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-answer:hover {
+    background-color: #1976d2;
+}
+
+.btn-answer:disabled {
+    background-color: #bdbdbd;
+    cursor: not-allowed;
+}
+
+/* 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: white;
+    margin: 5% auto;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #000;
+}
+
+.modal-question-title {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.modal-question-content {
+    background-color: #f9f9f9;
+    padding: 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+/* 푸터 */
+footer {
+    max-width: 900px;
+    margin: 2rem auto;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #888;
+    padding: 1rem;
+}
+
+footer a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    header {
+        padding: 1.5rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    header nav {
+        font-size: 0.85rem;
+    }
+
+    header nav a {
+        margin: 0 8px;
+    }
+
+    section {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    textarea {
+        width: 100%;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        margin-top: 0.5rem;
+        margin-right: 0;
+    }
+
+    .modal-content {
+        width: 95%;
+        margin: 20% auto;
+    }
+
+    .question-item-buttons {
+        flex-direction: column;
+    }
+
+    .btn-answer {
+        width: 100%;
+    }
+}
+
+/* 체크박스 그룹 */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+.checkbox-hint {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* 비공개 배지 */
+.private-badge {
+    display: inline-block;
+    background-color: #f44336;
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+/* 관리자 배지 */
+.admin-badge {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+    font-weight: 600;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    z-index: 999;
+}
+
+.admin-logout-btn {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+    border: 1px solid white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.admin-logout-btn:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* 페이지네이션 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+}
+
+.pagination button {
+    background-color: #eee;
+    border: 1px solid #ddd;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.pagination button.active {
+    background-color: #000;
+    color: white;
+    border-color: #000;
+}
+
+.pagination button:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* 질문 아이템 수정 */
+.question-item-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.btn-edit {
+    background-color: transparent;
+    color: #000;
+    border: none;
+    border-bottom: 2px solid #000;
+    padding: 0.2rem 0.4rem;
+    border-radius: 0;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.75rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-edit:hover {
+    background-color: transparent;
+    color: #333;
+    border-bottom-color: #333;
+}
+
+.btn-answer {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-answer:hover {
+    background-color: #f57c00;
+}
+
+.btn-answer:disabled {
+    background-color: #bdbdbd;
+    cursor: not-allowed;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+    .admin-badge {
+        bottom: 10px;
+        right: 10px;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+    }
+}
+
+
+/* 답변 보기 버튼 */
+.btn-view-answer {
+    background-color: transparent;
+    color: #4caf50;
+    border: 1px solid #4caf50;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.btn-view-answer:hover {
+    background-color: #4caf50;
+    color: white;
+}
+
+
+
+/* 이분할 레이아웃 */
+.main-container {
+    display: flex;
+    max-width: 1400px;
+    margin: 2rem auto;
+    gap: 2rem;
+    padding: 0 1rem;
+}
+
+.left-section {
+    flex: 1;
+    overflow-y: auto;
+    max-height: calc(100vh - 200px);
+}
+
+.right-section {
+    flex: 0 0 450px;  /* ← 이 값을 350px에서 450px로 변경 (원하는 너비로 조정) */
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+}
+
+
+.question-form-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.question-form-section h2 {
+    margin-top: 0;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    .main-container {
+        flex-direction: column;
+    }
+
+    .right-section {
+        flex: 1;
+        position: static;
+        max-height: none;
+    }
+
+    .left-section {
+        max-height: none;
+    }
+}

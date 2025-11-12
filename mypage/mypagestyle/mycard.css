@@ -1,0 +1,126 @@
+/* ====================================================== */
+/* === 임시 인라인 스타일 (mycard.html) === */
+/* ====================================================== */
+/* 참고: 
+          이 <style> 태그 내의 모든 CSS는 향후 별도의 .css 파일로 분리/대체될 예정입니다.
+          
+          - HTML 구조: <body> 내부의 <!-- 주석 -->을 참고하세요.
+          - 동적 상태: <script> 내부의 [JS Dynamic Content], [CSS Dynamic HTML] 주석을 참고하세요.
+      */
+/* ====================================================== */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* 카드 전체를 감싸는 컨테이너 */
+.card-container {
+  width: 100%;
+  max-width: 350px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* --- 1. 상단 (로고, 닉네임, 등급) --- */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.card-logo img {
+  width: 40px;
+}
+.card-nickname {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+.card-grade {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #00d159;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- 2. 사용자 정보 (이름, 회원번호, 등록일) --- */
+.user-info {
+  margin-bottom: 20px;
+}
+.user-info .name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #111;
+  margin-bottom: 8px;
+}
+.user-info .detail {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* --- 3. QR 코드 --- */
+/* QR 코드 섹션 (가운데 정렬 담당) */
+.qr-code {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+/* * [CSS 참고] QR 코드가 삽입될 컨테이너입니다.
+         * JS 라이브러리(qrcode.js)가 이 내부에 <canvas> 또는 <img> 태그를 동적으로 생성합니다.
+         * 이 컨테이너 자체는 크기를 지정하지 않고(display: inline-block),
+         * 내부 여백과 그림자 등 스타일만 담당하여 JS와 충돌을 피합니다.
+         */
+#qr-code-container {
+  display: inline-block; /* 내용물(QR코드) 크기에 맞춤 */
+  padding: 10px; /* 10px 흰색 테두리 여백 */
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  /* width, height 속성을 아예 제거하여 JS와 충돌 방지 */
+}
+
+/* * [CSS 참고] 라이브러리가 생성한 <canvas> 또는 <img> 태그의 스타일은
+         * JS의 new QRCode() 옵션(width: 230, height: 230)에서 제어됩니다.
+         * CSS에서 #qr-code-container img 또는 #qr-code-container canvas의 
+         * 크기를 강제로 덮어쓰지 않도록 주의해야 합니다.
+         */
+
+/* --- 4. Apple Wallet 버튼 --- */
+.wallet-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 14px;
+  background-color: #333333;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  gap: 10px;
+}
+.wallet-button img {
+  width: 24px;
+  height: auto;
+}

@@ -1,0 +1,430 @@
+/* ====================================================== */
+/* === 임시 인라인 스타일 (my_running_page.html) === */
+/* ====================================================== */
+/* 참고: 
+    이 <style> 태그 내의 모든 CSS는 향후 별도의 .css 파일로 분리/대체될 예정입니다.
+    이 페이지는 userpage.html과 .registered-list 등 일부 스타일을 공유합니다.
+    
+    - HTML 구조: <body> 내부의 <!-- 주석 -->을 참고하세요.
+    - 동적 상태: <script> 내부의 [CSS Class], [CSS Dynamic HTML], [CSS Attribute] 주석을 참고하세요.
+*/
+/* ====================================================== */
+
+/* ------------------------------------------------------------------- */
+/* --- Base Styles (userpage.html에서 가져옴) --- */
+/* ------------------------------------------------------------------- */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+/* --- Layout Containers (userpage.html에서 가져옴) --- */
+/* [CSS 참고] 이 페이지의 헤더는 userpage.html과 다릅니다. (공통 헤더 파일 아님) */
+.header-container {
+  padding: 16px 40px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+.header-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #4f46e5;
+}
+.header-nav ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+}
+.header-nav a {
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.header-nav a:hover {
+  color: #4f46e5;
+}
+
+.main-container {
+  width: 100%;
+  max-width: 1024px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.footer-container {
+  padding: 20px 40px;
+  background-color: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  text-align: center;
+  color: #6b7280;
+  font-size: 12px;
+  margin-top: 60px;
+}
+
+/* ------------------------------------------------------------------- */
+/* --- ⭐️ 검색/필터 스타일 (coming_running_page에서 가져옴) --- */
+/* ------------------------------------------------------------------- */
+.search-container {
+  margin-bottom: 20px;
+}
+
+/* [CSS State Toggle] JS가 이 버튼에 .active 클래스를 토글함 */
+#search-toggle-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+#search-toggle-btn:hover {
+  background-color: #f7f7f7;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+/* [CSS Class] JS가 토글하는 활성 상태 스타일 */
+#search-toggle-btn.active {
+  background-color: #f0f0f0;
+  color: #4f46e5;
+}
+
+/* [CSS State Toggle] JS가 .active 클래스를 토글하여 패널을 표시/숨김 */
+.filter-panel {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+  max-height: 0; /* 숨김 상태 */
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, opacity 0.3s ease-out,
+    padding 0.4s ease-out;
+  padding: 0 25px;
+  margin-bottom: 30px;
+}
+
+/* [CSS Class] JS가 토글하는 활성 상태 스타일 */
+.filter-panel.active {
+  max-height: 500px; /* 표시 상태 */
+  opacity: 1;
+  padding: 25px;
+}
+
+.filter-columns {
+  display: flex;
+  gap: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.filter-column {
+  flex: 1;
+  border-right: 1px solid #f0f0f0;
+  padding: 0 15px;
+}
+.filter-column:last-child {
+  border-right: none;
+}
+
+.filter-column h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 15px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.date-filter-group {
+  display: flex;
+  gap: 10px;
+}
+.filter-select {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fafafa;
+}
+
+.filter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.filter-list li {
+  margin-bottom: 10px;
+}
+.filter-list label {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+}
+.filter-list label:hover {
+  background-color: #f9f9f9;
+}
+.filter-list input[type="radio"] {
+  margin-right: 8px;
+  accent-color: #4f46e5;
+}
+
+/* ⭐️ 레벨 필터(data-filter-group="level") 가로 정렬 */
+.filter-list[data-filter-group="level"] {
+  display: flex;
+  flex-wrap: wrap; /* 줄바꿈 허용 */
+  gap: 15px; /* 항목 간 가로 간격 */
+  max-height: none; /* 세로 스크롤 제한 해제 */
+  overflow-y: visible;
+}
+.filter-list[data-filter-group="level"] li {
+  margin-bottom: 0; /* 세로 간격 제거 */
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.filter-actions button {
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+#filter-reset-btn {
+  background-color: #f5f5f5;
+  color: #333;
+}
+#filter-apply-btn {
+  background-color: #4f46e5;
+  color: #fff;
+  border-color: #4f46e5;
+}
+
+/* ------------------------------------------------------------------- */
+/* --- ⭐️ 페이지 타이틀 --- */
+/* ------------------------------------------------------------------- */
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #1f2937;
+}
+
+/* ⭐️ 탭 관련 CSS 삭제 */
+
+/* ------------------------------------------------------------------- */
+/* --- ⭐️ 정렬 버튼 스타일 (coming_running_page에서 가져옴) --- */
+/* ------------------------------------------------------------------- */
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
+}
+.results-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2937;
+  flex-grow: 1;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+.sort-buttons {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0; /* 버튼이 찌그러지지 않게 */
+}
+
+/* [CSS State Toggle] JS가 .active 클래스 및 data-order 속성을 토글함 */
+.sort-btn {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+}
+.sort-btn:hover {
+  background-color: #e9e9e9;
+}
+/* [CSS Class] JS가 토글하는 활성 상태 */
+.sort-btn.active {
+  background-color: #4f46e5;
+  color: white;
+  font-weight: 600;
+  border-color: #4f46e5;
+}
+.sort-btn::after {
+  content: ""; /* 기본은 비워둠 */
+  display: inline-block;
+  width: 0.8em;
+  font-weight: bold;
+  margin-left: 4px;
+}
+/* [CSS Attribute] JS가 토글하는 속성값에 따라 화살표 표시 */
+.sort-btn.active[data-order="asc"]::after {
+  content: "↑";
+}
+.sort-btn.active[data-order="desc"]::after {
+  content: "↓";
+}
+
+/* ------------------------------------------------------------------- */
+/* --- 리스트 스타일 (userpage.html의 모달에서 재사용) --- */
+/* ------------------------------------------------------------------- */
+
+/* [CSS Dynamic HTML] 이 리스트는 JS에 의해 내용이 채워집니다. */
+.registered-list {
+  display: grid;
+  grid-template-columns: 1fr; /* 1열 목록 */
+  gap: 20px;
+}
+
+/* [CSS Dynamic HTML] JS가 생성하는 .registered-item 스타일 */
+.registered-item {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex; /* 가로 정렬 */
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.registered-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.item-info-box {
+  flex-grow: 1; /* 남은 공간 모두 차지 */
+}
+
+.item-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+.item-info-row .info-label {
+  font-weight: 500;
+  color: #4b5563;
+}
+.item-info-row .info-value {
+  color: #333;
+  font-weight: 600;
+}
+
+/* ⭐️ '상태' 뱃지 CSS 삭제 */
+
+/* '상세보기' 버튼 */
+.item-link {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4f46e5;
+  display: block;
+  text-align: right;
+  text-decoration: none;
+  margin-top: 10px;
+}
+.item-link:hover {
+  text-decoration: underline;
+}
+
+/* [CSS Dynamic HTML] JS가 생성하는 '목록 없음' 메시지 스타일 */
+.empty-list-message {
+  color: #6b7280;
+  text-align: center;
+  padding: 40px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+/* ------------------------------------------------------------------- */
+/* --- 모바일 반응형 --- */
+/* ------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .header-container {
+    padding: 10px 20px;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .header-nav ul {
+    gap: 16px;
+    justify-content: center;
+  }
+  .main-container {
+    margin: 20px auto;
+    padding: 0 15px;
+  }
+
+  /* ⭐️ 필터/정렬 모바일 */
+  .filter-columns {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .filter-column {
+    border-right: none;
+    padding: 0 5px;
+  }
+  .date-filter-group {
+    flex-direction: column;
+  }
+  .results-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+  .sort-buttons {
+    justify-content: space-around;
+  }
+
+  /* ⭐️ 탭 관련 CSS 삭제 */
+
+  .registered-item {
+    flex-direction: column; /* 모바일에선 세로로 쌓음 */
+    align-items: flex-start;
+  }
+}

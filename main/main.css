@@ -1,0 +1,1304 @@
+/* ----------------------------
+   2025.11.10
+   Author: 홍정민, Hong Sumin(sumin5400@gmail.com)
+   Description: create Accout page html
+----------------------------- */
+
+
+/* -------------------------------
+   기본 body, section 설정
+--------------------------------- */
+/* body, html */
+body,
+html {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+/* 공통 Section 스타일 */
+.section,
+.main-section {
+    width: 100%;
+    height: 100vh;
+    /* 화면 전체 높이 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/* -----------------------------------------------------
+                        Section 1
+----------------------------------------------------- */
+
+
+/* 기준 컨테이너 > relative */
+.section1 {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* 비디오를 배경처럼 */
+.section1>video {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+/* 텍스트는 위 레이어 */
+.section1 .main-text,
+.section1 .foot-text {
+    z-index: 2;
+    color: white;
+}
+
+.text-box {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    /* background-color: blue; */
+}
+
+.text-box .main-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(20px, 20vmin, 250px);
+    letter-spacing: -.5px;
+
+    position: absolute !important;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    gap: 70px;
+    /* background-color: red; */
+}
+
+.text-box .foot-text {
+    position: absolute !important;
+
+    /* 중앙 정렬 */
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: max(16px, 10vh, env(safe-area-inset-bottom));
+    white-space: nowrap;
+
+    /* iPhone 하단 노치 대응 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 20px;
+    letter-spacing: -0.5px;
+    font-weight: 600;
+    pointer-events: auto;
+    gap: 15px;
+
+    /* background-color: gray; */
+}
+
+/* 화살표 아이콘에 애니메이션 적용 */
+.foot-text svg {
+    display: inline-block;
+    animation: bounce 2s infinite;
+    /* 1초 간격 반복 */
+    transform-origin: center;
+    /* 중심 기준으로 이동 */
+}
+
+/* 위아래 통통 튀는 애니메이션 */
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        /* 원래 위치 */
+    }
+
+    50% {
+        transform: translateY(8px);
+        /* 아래로 8px 이동 */
+    }
+}
+
+
+/* 중간 공백 */
+.between-space {
+    height: 20vh;
+    width: 100%;
+}
+
+
+
+/* -----------------------------------------------------
+                        Section 2
+----------------------------------------------------- */
+
+
+
+/* SECTION2 전체 레이아웃 */
+.section2 {
+    position: relative;
+    display: flex;
+    width: 100%;
+    /* 지도 + 패널 높이 동일 */
+    height: 100vh;
+    overflow: hidden;
+    margin: 200px 0;
+}
+
+
+/* --- 지도 전체 화면 --- */
+.map_area {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+
+/* 지도 */
+#map {
+    flex: 1;
+    /* 남는 영역 전부 차지 */
+    height: 100%;
+    position: relative;
+    z-index: 1;
+
+    cursor: grab;
+}
+
+/* 자식들이 cursor를 덮어써도 부모(#map)의 값을 상속받게 강제 */
+#map * {
+    cursor: inherit !important;
+}
+
+/* 드래그 중 유지할 커서 (initLongPressDrag에서 classList로 토글) */
+#map.grabbing,
+#map.grabbing * {
+    cursor: grabbing !important;
+}
+
+
+/*  지도 위 확대 축소 아이콘 버튼  */
+.zoom-controls {
+    position: absolute;
+    /* 위치 조정 원하면 이 값만 바꾸면 됨 */
+    top: 50px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 9999;
+}
+
+.zoom-controls button {
+    width: 40px;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25); */
+}
+
+.zoom-controls button:hover {
+    background: rgba(0, 0, 0, 1);
+    transition: background .3s ease;
+}
+
+/* .zoom-controls button:active {
+    transform: scale(0.95);
+} */
+
+
+/* --- Crew 마커 (남은 자리 숫자 표시) --- */
+.crew-marker {
+    width: 52px;
+    height: 52px;
+    background: rgb(48, 48, 48);
+    border-radius: 50%;
+    color: white;
+    font-weight: bold;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transform: translateY(-10px);
+    transition: 0.25s ease;
+}
+
+.crew-marker:hover {
+    background: rgba(0, 0, 0, 1);
+    transition: background .3s ease;
+    /* transform: translateY(-14px) scale(1.08); */
+}
+
+/* 3) 크루 마커만 예외: 평소엔 pointer 유지 */
+#map .crew-marker,
+#map .crew-marker * {
+    cursor: pointer !important;
+}
+
+
+
+
+/* -----------------------
+   슬라이드 패널
+------------------------ */
+
+.map_area {
+    /* 패널 사이즈 */
+    --panel-w: 45%;
+
+    /* 패널과 닫기 버튼 사이 간격 */
+    --in-gap: 16px;
+    --btn-size: 44px;
+}
+
+
+#slidePanel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: var(--panel-w);
+    height: 100%;
+    padding: 80px;
+    box-sizing: border-box;
+
+    background: rgba(0, 0, 0, .9);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+    /* 패널 내 카드 섹션만 스크롤 동작하기 위해 전체 패널 스크롤 막아둠 */
+    overflow: hidden; 
+
+    /* 기본 상태 열림 */
+    transform: translateX(0);
+    pointer-events: auto;
+
+    /* 패널 부드럽게 열기 */
+    transition: transform .3s ease;
+
+}
+
+/* 상단 영역은 고정 > 카드 추가시 crewListPanel만 늘어남 > 스크롤 가능해짐 */
+#slidePanel .search-box,
+#slidePanel .filter-tabs {
+    flex: 0 0 auto;
+}
+
+/* crewListPanel 섹션만 스크롤 대상 */
+#crewListPanel {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+
+/* crew-card 사이즈 고정 */
+#crewListPanel>.crew-card {
+    /* shrink 방지 */
+    flex: 0 0 auto;
+    /* 썸네일 높이에 맞춰 안정화 */
+    min-height: 100px;
+}
+
+
+/* 패널 닫힘 */
+#slidePanel.closed {
+    transform: translateX(100%);
+    pointer-events: none;
+}
+
+/* -----------------------
+   🔹 열기 버튼
+------------------------ */
+#slideOpenBtn {
+    /* 처음에 숨기기 */
+    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease;
+
+
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+
+    width: var(--btn-size);
+    height: var(--btn-size);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 999;
+
+    /* 지도 위 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* 패널이 닫힘일 때만 표시 */
+.map_area.panel-closed #slideOpenBtn {
+    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+#slideOpenBtn svg,
+#slideCloseBtn svg {
+    width: 20px;
+    height: 20px;
+    /* 아이콘을 흰색으로 */
+    filter: brightness(0) invert(1);
+}
+
+#slideCloseBtn svg {
+    rotate: 180deg
+}
+
+#slideOpenBtn:hover,
+#slideCloseBtn:hover {
+    background: rgba(0, 0, 0, 1);
+    transition: background .3s ease;
+}
+
+
+/* -----------------------
+   닫기 버튼
+------------------------ */
+
+#slideCloseBtn {
+    position: absolute;
+
+    top: 50%;
+    transform: translateY(-50%);
+    left: var(--in-gap);
+
+    width: var(--btn-size);
+    height: var(--btn-size);
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+    z-index: 1001;
+
+    /* 지도 위 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: rgba(0, 0, 0, 0.8); */
+
+    transition: opacity .3s ease, transform .3s ease, background .3s ease;
+
+}
+
+/* 반응형 */
+@media (max-width:1024px) {
+    .map_area {
+        --panel-w: 60%;
+    }
+}
+
+@media (max-width:640px) {
+    .map_area {
+        --panel-w: 100%;
+        --in-gap: 12px;
+    }
+
+    #slidePanel {
+        padding: 24px;
+    }
+
+    #slideCloseBtn {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+
+
+
+
+/* ======================
+   패널 내 내 위치 검색
+====================== */
+
+.slide-panel .search-box {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    box-sizing: border-box;
+    outline: none;
+
+    gap: 5px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    /* background-color: blueviolet; */
+
+}
+
+
+
+.search-box .inner {
+    width: 88%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: 2px solid white;
+    /* padding-right: 5px; */
+    /* background-color: greenyellow; */
+}
+
+.inner > svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+    /* background-color: coral; */
+}
+
+.search-box .myLocation-btn {
+    flex: 1;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background-color: aqua; */
+}
+
+.slide-panel .search-box input {
+    width: 90%;
+    padding: 5px 0;
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    cursor: text;
+    /* background-color: tomato; */
+}
+
+#addressClearBtn {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    display: none;
+    /* background-color: yellow; */
+}
+
+.search-box::placeholder {
+    color: white;
+    /* 브라우저 기본 반투명 효과 제거 */
+    opacity: 1;
+}
+
+/* 패널 내 검색 조건 filter Buttons */
+.filter-tabs {
+    gap: 8px;
+    margin-top: 12px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.filter-btn {
+    padding: 6px 15px;
+    border-radius: 100px;
+    border: 1px solid white;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.25s;
+    white-space: nowrap;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: white;
+    color: black;
+    font-weight: bold;
+}
+
+
+
+/* ======================
+   패널 내 크루 카드 스타일
+====================== */
+.crew-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 20px;
+}
+
+.crew-card {
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    color: white;
+    /* background-color: rgb(86, 86, 86); */
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    /* 썸네일과 문구섹션 사이 */
+    gap: 12px;
+
+    cursor: auto;
+    transition: 0.25s ease;
+    overflow: hidden;
+}
+
+
+/*
+    카드 자체를 클릭했을 때 링크를 연결하신 거 같아서 커서 버튼 설정했습니다.
+    추후 신청하기 버튼으로 로직 변경 시 삭제해 주세요.
+*/
+.crew-card:hover {
+    cursor: pointer;
+}
+
+.crew-card .inner-img {
+    width: clamp(70px, 15vw, 100px);
+    height: clamp(70px, 15vw, 100px);
+    border-radius: 5px;
+    background-color: white;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+
+.crew-card img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.crew-card .inner-details {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 12px;
+    width: 100%;
+
+    min-width: 0;
+    /* background-color: turquoise; */
+}
+
+.crew-card .inner-description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    letter-spacing: -.5px;
+    line-height: 1.5;
+
+    min-width: 0;
+
+    /* background-color: orange; */
+}
+
+.crew-card .crew-name,
+.crew-card .crew-date,
+.crew-card .crew-trackInfo,
+.crew-card .crew-leftSpot {
+    display: block;
+    max-width: 100%;
+
+    /* 1줄 처리 넘치면 > ellipsis 처리 */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* background-color: plum; */
+}
+
+.crew-card .crew-name {
+    font-size: clamp(14pt, 2.5vmin, 16pt);
+    font-weight: 600;
+    display: inline-block;
+    margin: 6px 0;
+}
+
+.crew-card .crew-date,
+.crew-card .crew-trackInfo,
+.crew-card .crew-distance,
+.crew-card .crew-time,
+.crew-card .crew-leftSpot {
+    font-size: clamp(7pt, 1.5vmin, 9pt);
+    font-weight: 500;
+}
+
+.crew-card .crew-trackInfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+}
+
+.crew-apply-btn {
+    margin-left: auto;
+    width: 100px;
+    height: 40px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+
+    font-size: 10pt;
+    letter-spacing: -.2px;
+    font-weight: 600;
+
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.crew-apply-btn svg {
+    rotate: -45deg;
+}
+
+.crew-apply-btn:hover {
+    background-color: white;
+    color: black;
+    transition: 0.25s ease;
+}
+
+
+
+/* -----------------------------------------------------
+              Section 3 - FAQ Chat Style
+----------------------------------------------------- */
+
+
+
+.section3 {
+  height: max-content;
+}
+
+.faq-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.faq-title {
+  font-size: 48px;
+  font-weight: bold;
+  /* margin-bottom: 60px; */
+  line-height: 1.3;
+  color: #fff;
+  letter-spacing: -1px;
+}
+
+.chat-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 100px 0;
+
+  /* background-color: blue; */
+}
+
+.chat-message {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: -.8px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+/* 사용자 메시지 (왼쪽) */
+.chat-message.user-message {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.chat-message.user-message p {
+  background-color: transparent;
+  color: #fff;
+  padding: 12px 20px;
+  border: 2px solid #fff;
+  border-radius: 24px;
+  max-width: 400px;
+}
+
+/* 봇 메시지 (오른쪽) */
+.chat-message.bot-message {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.chat-message.bot-message .profile-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  /* 왼쪽으로 배치 */
+  order: 2;
+  background-color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-img img {
+  width: 20px;
+  height: 20px;
+}
+
+.chat-message.bot-message .message-box {
+  max-width: 70%;
+  order: 1;
+}
+
+.chat-message.bot-message .message-box p {
+  background-color: #fff;
+  color: #000;
+  padding: 12px 16px;
+  border-radius: 16px;
+}
+
+/* 자주 묻는 질문 -> 링크 */
+
+.faq-link-wrapper {
+  margin-top: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* background-color: turquoise; */
+}
+
+.faq-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 12px 28px;
+  border-radius: 24px;
+  background-color: transparent;
+  transition: all 0.3s ease;
+
+  /* background-color: royalblue; */
+}
+
+.faq-link span:first-child {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.faq-link svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.faq-link:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .section3 {
+    padding: 40px 15px;
+  }
+
+  .faq-title {
+    font-size: 36px;
+    margin-bottom: 40px;
+  }
+
+  .chat-wrapper {
+    gap: 18px;
+  }
+
+  .chat-message.user-message p,
+  .chat-message.bot-message .message-box p {
+    max-width: 85%;
+    font-size: 12px;
+  }
+}
+
+
+/* -------- section 3 애니메이션 효과 -------- */
+
+/* 처음엔 숨김 */
+.section3 .chat-message .message-box{
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+}
+
+.section3 .chat-message .profile-img{
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+}
+
+/* 등장 상태(계속 유지) */
+.section3 .chat-message.is-shown .message-box,
+.section3 .chat-message.is-shown .profile-img {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  filter: none;
+}
+
+
+
+.section3 .chat-message.just-shown .message-box{
+  animation: bubbleIn 520ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+.section3 .chat-message.is-shown .profile-img{
+  animation: bubbleUp 920ms ease both;
+}
+
+@keyframes bubbleIn{
+  0%   { opacity:0; transform: translateY(16px) scale(0);}
+  100% { transform: translateY(0) scale(1); opacity:1; }
+}
+
+@keyframes bubbleUp{
+  0%   { transform: translateY(20px); }
+  100% { transform: translateY(0); }
+}
+
+/* 시작 방향 */
+.section3 .user-message .message-box{ transform-origin: left bottom; }
+.section3 .bot-message  .message-box{ transform-origin:  right bottom; }
+
+
+
+
+.faq-link{
+  opacity: 0;
+  transform: translateY(8px);
+  animation: fadeUp .8s linear both;
+  /* 스크롤 진행도에 맞춰 서서히 떠오름 */
+  animation-timeline: view();
+  animation-range: entry 0% cover 10%;
+}
+@keyframes fadeUp{
+  from{ opacity:0; transform: translateY(12px); }
+  to  { opacity:1; transform: translateY(0); }
+}
+
+
+
+/* -----------------------------------------------------
+         Section 4 - Image Scroll Animation
+----------------------------------------------------- */
+
+
+.section4 {
+  /* background-color: #000; */
+  padding: 0;
+  overflow: hidden;
+}
+
+.image-scroll-container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+.image-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.scroll-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 1;
+}
+
+
+
+/* ★ 천천히 올라오는 애니메이션 */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 초기 상태: 완전히 숨김 */
+.scroll-image {
+  opacity: 0;
+  transform: translateY(60px);
+}
+
+/* 애니메이션 적용될 때 */
+.scroll-image.slide-up {
+  animation: slideUp 3.0s ease-out forwards;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .image-scroll-container {
+    flex-direction: column;
+  }
+
+  .image-wrapper {
+    min-height: 50vh;
+  }
+
+  .scroll-image {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+
+
+/* 각 이미지 카드 호버 시 */
+
+.image-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  transform-origin: center center;
+}
+
+.image-wrapper:hover img {
+  cursor: pointer;
+  filter: brightness(0.5);
+  transform: scale(1.2);
+}
+
+.image-wrapper::after {
+  content: attr(data-text); /* HTML에서 지정한 텍스트 사용 */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  color: white;
+  font-family: "Bebas Neue", "Zalando Sans SemiExpanded", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-size: 2rem;
+  /* background-color: #000; */
+  
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  pointer-events: none;
+}
+
+.image-wrapper:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Section 5 - Footer Content */
+.section5 {
+  /* background-color: #000; */
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.footer-content {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  /* background-color: aqua; */
+}
+
+/* 왼쪽: 비디오 */
+.footer-video {
+  /* 비디오 가로 기준 크기 */
+  width: 35%;
+}
+
+.footer-video video {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+/* 오른쪽: 텍스트 및 정보 */
+.footer-info {
+  position: relative;
+  position: absolute;
+  top: 55%;
+  left: 35%;
+  transform: translateY(-45%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 60px 40px;
+  color: #fff;
+
+}
+
+.footer-title {
+  font-family: "Bebas Neue", "Zalando Sans SemiExpanded", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  white-space: nowrap;
+  font-size: clamp(100px, 12vmin, 160px);
+  line-height: 1.2;
+  margin-bottom: 80px;
+}
+
+.contact-section,
+.location-section {
+  margin-bottom: 40px;
+}
+
+.contact-section h3,
+.location-section h3 {
+  font-size: 14px;
+  margin-bottom: 4px;
+  color: #dbdbdb;
+}
+
+.contact-section p,
+.location-section p {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.6;
+  letter-spacing: -.3px;
+  color: #ffffff;
+}
+
+/* 소셜 미디어 아이콘 - 오른쪽 아래 */
+.social-icons {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  display: flex;
+  gap: 26px;
+}
+
+.social-link {
+  display: inline-flex;
+  line-height: 0;
+  opacity: 0.9;
+  transition: opacity .2s ease;
+}
+
+.social-link:hover {
+  opacity: .7;
+  /* transform: opacity 0.2s ease, scale(1.02); */
+}
+
+.social-link svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+  }
+
+  .footer-image {
+    height: 50vh;
+  }
+
+  .footer-info {
+    padding: 40px 20px;
+  }
+
+  .footer-title {
+    font-size: 32px;
+  }
+}
+
+
+
+
+
+
+
+/* =====================
+   로그인 모달 스타일
+   ===================== */
+.login-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.login-modal-content {
+  background: rgba(20, 20, 20, 0.95);
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  max-width: 400px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+}
+
+.login-modal-content h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  margin-top: 0;
+  color: white;
+}
+
+.login-modal-content p {
+  font-size: 14px;
+  color: #aaa;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.login-modal-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.login-modal-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  background: white;
+  color: black;
+  text-decoration: none;
+  border-radius: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.login-modal-btn:hover {
+  background: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.login-modal-btn.close {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.login-modal-btn.close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* 예약 없음 메시지 */
+.no-reservation {
+  text-align: center;
+  color: #999;
+  padding: 40px 20px;
+  font-size: 14px;
+  line-height: 1.6;
+}

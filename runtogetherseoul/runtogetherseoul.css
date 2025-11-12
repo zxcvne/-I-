@@ -1,0 +1,353 @@
+:root {
+  --bg: #fff;
+  --fg: #000;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+  /* 배경 전환 시 부드럽게 전환 */
+  transition: background-color .6s ease, color .6s ease; 
+}
+
+
+.section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* padding: 20px; */
+}
+
+.section1 {
+  background-color: aqua;
+}
+
+.section2 {
+  background-color: beige;
+}
+
+
+/* ----------------------------------------- section 3 ----------------------------------------- */
+
+
+.section3 .text-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  font-size: clamp(16px, 2vw, 20px);
+  line-height: 1.5;
+  letter-spacing: -.8px;
+  gap: 12px;
+
+  /* background-color: aqua; */
+  margin: 120px 0;
+}
+
+.text-box div:nth-child(1) span {
+  font-size: clamp(24px, 2vw, 30px);
+  font-weight: bold;
+}
+
+.small-text-box {
+  margin-top: 20px;
+  font-size: clamp(12px, 1.5vw, 16px);
+  line-height: 1.5;
+  letter-spacing: -.4px;
+}
+
+
+.video-container {
+  width: 100%;
+  max-width: 1200px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 70px 0;
+  /* background-color: lightgray; */
+}
+
+.video-container .opDescription {
+  font-size: clamp(8px, 2vw, 12px);
+  width: 200px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section3 .video-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px 0;
+  overflow: hidden;
+
+}
+
+/* 비디오 */
+.section3 .video-card {
+  flex: 0 0 auto;
+  width: min(22vw, 240px);
+  aspect-ratio: 9 / 16;
+  border-radius: 15px;
+  border: none;
+  overflow: hidden;
+  opacity: .35;
+  transform: scale(.9);
+  transition: transform .35s ease, opacity .35s ease, filter .35s ease;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* 가운데 비디오 */
+.section3 .video-card.is-center {
+  width: min(28vw, 320px);
+  opacity: 1;
+  transform: scale(1);
+  filter: none;
+  /* box-shadow: 0 12px 28px rgba(0, 0, 0, .35); */
+}
+
+.section3 .video-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-user-drag: none;
+  /* user-drag: none; */
+  pointer-events: none;
+  border: none;
+}
+
+.section3 .shorts-nav {
+  position: absolute;
+  top: 50%;
+  translate: 0 -50%;
+
+  z-index: 2;
+  border: none;
+  background-color: transparent;
+  color: rgba(0, 0, 0, 0.2);
+
+  text-align: center;
+  cursor: pointer;
+  transition: background .25s ease, transform .15s ease;
+}
+
+.section3 .shorts-nav:hover svg {
+  fill: rgb(0, 0, 0);
+}
+
+.shorts-nav.next svg {
+  transform: rotate(180deg);
+}
+
+.section3 .shorts-nav.prev {
+  left: 6px;
+}
+
+.section3 .shorts-nav.next {
+  right: 6px;
+}
+
+@media (max-width: 960px) {
+  .section3 .video-card {
+    width: 34vw;
+  }
+
+  .section3 .video-card.is-center {
+    width: 42vw;
+  }
+}
+
+@media (max-width: 560px) {
+  .section3 .video-card {
+    width: 38vw;
+  }
+
+  .section3 .video-card.is-center {
+    width: 52vw;
+  }
+}
+
+/* ----------------------------------------- section 4 ----------------------------------------- */
+
+.section4 {
+  /* background-color: lightgreen; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.opDescription,
+.opDescription>div {
+  font-size: clamp(8px, 2vw, 12px);
+  width: 200px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: orange; */
+}
+
+.opDescription {
+  gap: 20px;
+}
+
+.hscroll-box {
+  display: flex;
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  touch-action: pan-x;
+}
+
+.hscroll-box::-webkit-scrollbar {
+  display: none;
+}
+
+.hscroll-box {
+  cursor: grab;
+}
+
+.hscroll-box:active {
+  cursor: grabbing;
+}
+
+.track {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 80vh;
+  align-items: flex-start;
+
+}
+
+.hscroll-item {
+  flex: 0 0 auto;
+  max-width: 1200px;
+  height: 100%;
+}
+
+.hscroll-item img {
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* ----------------------------------------- section 5 ----------------------------------------- */
+
+
+/* section5 스크롤 시 반전용 설정 */
+body.dark-mode {
+  --bg: #000;
+  --fg: #fff;
+}
+
+/* 헤더 로고 색도 반전 */
+body.dark-mode .header-container .logo svg {
+  fill: #fff;
+}
+
+.section5 {
+  margin-top: 120px;
+  margin-bottom: 50px;
+}
+
+.section5 .top-container {
+  width: 100%;
+  max-width: 1200px;
+
+  display: flex;
+  flex-direction: column;
+  
+  justify-content: center;
+  align-items: center;
+
+
+  /* background-color: aquamarine; */
+}
+
+.section5 .top-container .section-title {
+  font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: bold;
+  margin: 40px 0;
+  letter-spacing: -.8px;
+}
+
+.section5 .top-container .small-text-box {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+
+.section5 .bottom-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  width: 80%;
+  margin-top: 40px;
+  gap: 20px;
+
+  /* background-color: lightpink; */
+}
+
+.bottom-container .ros-left-box {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: flex-start;
+  gap: 12px;
+
+  /* background-color: lightseagreen; */
+}
+
+.ros-left-box button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+
+  padding: 10px 16px;
+  background-color: transparent;
+
+  font-size: clamp(12px, 1.5vw, 16px);
+  /* font-weight: bold; */
+  cursor: pointer;
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+
+.bottom-container .ros-right-box {
+  flex: 1;
+  width: 100%;
+
+  border-radius: 50px;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: lightblue; */
+}
+
+.ros-right-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.4s ease;
+}

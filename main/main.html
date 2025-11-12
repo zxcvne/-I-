@@ -1,0 +1,417 @@
+<!-- 
+/* ----------------------------
+   2025.11.10
+   Author: 홍정민, Hong Sumin(sumin5400@gmail.com)
+   Description: create Accout page html
+----------------------------- */ 
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Run Together Seoul</title>
+    <link rel="stylesheet" href="../common/font.css" />
+    <link rel="stylesheet" href="../common/header.css" />
+    <link rel="stylesheet" href="main.css" />
+
+    <script src="../common/header.js"></script>
+  </head>
+
+  <body>
+    <!-- 헤더 파일 -->
+
+    <!-- SECTION 1 : Hero -->
+    <section class="main-section section1">
+      <video
+        id="mainVideo"
+        autoplay
+        muted
+        playsinline
+        webkit-playsinline
+        loop
+        style="width: 100%; height: 100%; object-fit: cover"
+      >
+        <source src="../assets/videos/main_section1.mp4" type="video/mp4" />
+      </video>
+
+      <div class="text-box">
+        <div class="main-text">
+          <span>RUN TOGETHER.</span>
+          <span>SEOUL.</span>
+        </div>
+        <button type="button" class="foot-text">
+          <p>나에게 맞는 러닝 크루를 지금 바로 만나보세요</p>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-caret-down-fill"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"
+            />
+          </svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- 중간 공백 -->
+    <div class="between-space"></div>
+
+    <!-- SECTION 2 : Map + Slide Panel -->
+    <section class="section section2">
+      <div class="map_area">
+        <div id="map"></div>
+        <div class="zoom-controls">
+          <button id="zoomInBtn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="bi bi-plus"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"
+              />
+            </svg>
+          </button>
+          <button id="zoomOutBtn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="currentColor"
+              class="bi bi-dash"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <button id="slideOpenBtn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-chevron-left"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"
+            />
+          </svg>
+        </button>
+
+        <aside class="slide-panel" id="slidePanel">
+          <!-- 내 위치 검색 -->
+          <div class="search-box">
+            <div class="inner">
+              <input
+                type="text"
+                id="addressInput"
+                class="search-box"
+                placeholder="내 위치 검색"
+                readonly
+                style="cursor: pointer"
+              />
+
+              <!-- x 버튼 -->
+              <button id="addressClearBtn">
+                <svg
+                  class="bi bi-x"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"
+                  />
+                </svg>
+              </button>
+
+              <!-- 검색 아이콘 (화살표) - 현재 위치 버튼으로 변경 -->
+            </div>
+            <div class="myLocation-btn" id="myLocationBtn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                class="bi bi-crosshair"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M8.5.5a.5.5 0 0 0-1 0v.518A7 7 0 0 0 1.018 7.5H.5a.5.5 0 0 0 0 1h.518A7 7 0 0 0 7.5 14.982v.518a.5.5 0 0 0 1 0v-.518A7 7 0 0 0 14.982 8.5h.518a.5.5 0 0 0 0-1h-.518A7 7 0 0 0 8.5 1.018zm-6.48 7A6 6 0 0 1 7.5 2.02v.48a.5.5 0 0 0 1 0v-.48a6 6 0 0 1 5.48 5.48h-.48a.5.5 0 0 0 0 1h.48a6 6 0 0 1-5.48 5.48v-.48a.5.5 0 0 0-1 0v.48A6 6 0 0 1 2.02 8.5h.48a.5.5 0 0 0 0-1zM8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <!-- 버튼 위치 패널이랑 묶음으로 변경 aside 밖에 있던 걸 안으로 변경했어요(CSS) -->
+          <div class="filter-tabs">
+            <button class="filter-btn active" data-filter="near">근처</button>
+            <button class="filter-btn" data-filter="pace">페이스</button>
+            <button class="filter-btn" data-filter="distance">거리</button>
+            <button class="filter-btn" data-filter="date">날짜</button>
+            <button class="filter-btn" data-filter="myReservation">
+              나의 예약
+            </button>
+          </div>
+          <div class="crew-list" id="crewListPanel"></div>
+          <button class="slide-close-btn" id="slideCloseBtn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-chevron-left"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"
+              />
+            </svg>
+          </button>
+        </aside>
+      </div>
+    </section>
+
+    <!----------------------------------------------------------->
+
+    <!-- Section 2와 3 사이 빈 공간 -->
+    <!-- 중간 공백 -->
+    <div class="between-space"></div>
+
+    <!-- SECTION 3 : 이어지는 섹션 -->
+    <!-- SECTION 3 : FAQ Chat Style -->
+    <section class="section section3">
+      <div class="faq-container">
+        <h2 class="faq-title">YOU CAN BE #ONRUNNER</h2>
+
+        <div class="chat-wrapper">
+          <!-- 질문 1 -->
+          <div class="chat-message user-message">
+            <div class="message-box">
+              <p>러닝이 처음이에요 괜찮을까요?</p>
+            </div>
+          </div>
+          <div class="chat-message bot-message">
+            <div class="profile-img">
+              <img src="../assets/images/On-logo-black.svg" alt="ON 프로필" />
+            </div>
+            <div class="message-box">
+              <p>
+                물론입니다. 런투게더 서울을 함께 뛰는 러닝을 목표로 합니다.
+                러닝을 처음 시작하시는 분도 베터랑 러너분도 자신의 숙련도에 맞게
+                참여할 수 있도록 난이도를 조정하여 프로그램을 운영하고 있습니다.
+                러닝이 처음이시면 비기너 프로그램부터 도전해봐요!
+              </p>
+            </div>
+          </div>
+
+          <!-- 질문 2 -->
+          <div class="chat-message user-message">
+            <div class="message-box">
+              <p>꼭 ON브랜드를 신어야 하나요?</p>
+            </div>
+          </div>
+          <div class="chat-message bot-message">
+            <div class="profile-img">
+              <img src="../assets/images/On-logo-black.svg" alt="ON 프로필" />
+            </div>
+            <div class="message-box">
+              <p>
+                전혀요! :&#41;<!-- &#41;는 오른쪽 괄호 -->
+                자유롭게 본인에게 맞는 장비를 착용해주세요! 물론 ON의 상품을 한
+                번 착용해보시면 신세계를 경험하실거에요.
+              </p>
+            </div>
+          </div>
+
+          <!-- 질문 3 -->
+          <div class="chat-message user-message">
+            <div class="message-box">
+              <p>혼자 참여해도 되나요?</p>
+            </div>
+          </div>
+          <div class="chat-message bot-message">
+            <div class="profile-img">
+              <img src="../assets/images/On-logo-black.svg" alt="ON 프로필" />
+            </div>
+            <div class="message-box">
+              <p>
+                당연합니다! 모든 프로그램에는 ON의 헤드러너와 버디러너들이 ON
+                RUNNER와 함께 참여합니다. 러닝 프로그램별로 참여 가능 인원 및
+                현재 참여인원도 확인할 수 있으니 편하게 뛰러 오세요!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-link-wrapper">
+          <a href="../QnA/QnA.html" class="faq-link" target="_blank">
+            <span>자주 묻는 질문</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor"
+              class="bi bi-arrow-right-short"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3와 4 사이 빈 공간 -->
+    <!-- 중간 공백 -->
+    <div class="between-space"></div>
+
+    <!-- SECTION 4~5 : 이어지는 섹션 // JS에 section4라고 주석 넣어둠 -->
+    <section class="section section4">
+      <div class="image-scroll-container">
+        <div
+          class="image-wrapper"
+          id="campaignLinkImg"
+          data-text="RUN TOGETHER. SEOUL."
+        >
+          <img
+            src="../assets/images/main_section4_img1.png"
+            alt="RUN TOGETHER SEOUL"
+            class="scroll-image"
+          />
+        </div>
+        <div class="image-wrapper" id="onCrewLinkImg" data-text="ON CREW">
+          <img
+            src="../assets/images/main_section4_img2.png"
+            alt="ON CREW"
+            class="scroll-image"
+          />
+        </div>
+        <div class="image-wrapper" id="onGearLinkImg" data-text="ON GEAR">
+          <img
+            src="../assets/images/main_section4_img3.png"
+            alt="ON GEAR"
+            class="scroll-image"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4와 5 사이 빈 공간 -->
+    <!-- 중간 공백 -->
+    <div class="between-space"></div>
+
+    <!-- SECTION 5 : 이어지는 섹션 -->
+    <section class="section section5">
+      <div class="footer-content">
+        <!-- 왼쪽: 큰 이미지 -->
+        <div class="footer-video">
+          <video src="../assets/videos/credit.mp4" autoplay muted loop></video>
+        </div>
+
+        <!-- 오른쪽: 텍스트 및 정보 -->
+        <div class="footer-info">
+          <h1 class="footer-title">RUN TOGETHER. SEOUL.</h1>
+
+          <div class="contact-section">
+            <h3>CONTACT US</h3>
+            <p>ON@ON.SERVICE.COM</p>
+          </div>
+
+          <div class="location-section">
+            <h3>FIND US</h3>
+            <p>
+              1F, 15, Yangjae-cheon-ro 21-gil, Seocho-gu, Seoul,<br />
+              Republic of Korea, Seoul, Seoul, 06748, Korea, Republic of
+            </p>
+          </div>
+
+          <!-- 소셜 미디어 아이콘 -->
+        </div>
+        <div class="social-icons">
+          <a
+            href="https://www.instagram.com/on/"
+            class="social-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-instagram"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://x.com/on_running"
+            class="social-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633 4.304-4.633zM13.34 13.894h1.356L2.5 1.885H1.12L13.34 13.894z"
+              />
+            </svg>
+          </a>
+          <a
+            href="https://www.youtube.com/On-Running"
+            class="social-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-youtube"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6f4bc481039c09610343c34091827586&libraries=services,clusterer,drawing"></script>
+    <script src="main.js" defer></script>
+
+    <!-- 🔑 Daum 우편번호 API -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>나의 카드</title>
+
+    <!-- 1. QR 코드 생성을 위한 외부 라이브러리 (qrcode.js) -->
+    <!-- [JS] 이 스크립트가 'QRCode' 객체를 전역으로 생성합니다. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <link rel="stylesheet" href="mypagestyle/mycard.css" />
+  </head>
+  <body>
+    <!-- 3. HTML 구조 -->
+    <!-- 카드 레이아웃 시작 -->
+    <div class="card-container">
+      <!-- 1. 상단 (로고, 등급) -->
+      <div class="card-header">
+        <div class="card-logo">
+          <!-- (임시 로고) -->
+          <img
+            src="https://placehold.co/40x40/000000/FFFFFF?text=O"
+            alt="Logo"
+          />
+        </div>
+        <div style="text-align: right">
+          <div class="card-nickname">ON RUNNER</div>
+          <div class="card-grade">A</div>
+        </div>
+      </div>
+      <!-- 1. 상단 끝 -->
+
+      <!-- 2. 사용자 정보 -->
+      <div class="user-info">
+        <!-- [JS Target] [JS Dynamic Text] JS가 사용자 이름을 채워넣는 곳 -->
+        <div class="name" id="card-user-name">로딩 중...</div>
+        <!-- [JS Target] [JS Dynamic Text] JS가 회원번호, 등록일 정보를 채워넣는 곳 -->
+        <div class="detail" id="card-user-info">
+          회원 번호: 로딩 중...<br />
+          등록일: 로딩 중...
+        </div>
+      </div>
+      <!-- 2. 사용자 정보 끝 -->
+
+      <!-- 3. QR 코드 -->
+      <div class="qr-code">
+        <!-- [JS Target] [CSS Dynamic HTML] JS(qrcode.js)가 이 내부에 QR 코드를 생성(주입)하는 곳 -->
+        <div id="qr-code-container"></div>
+      </div>
+      <!-- 3. QR 코드 끝 -->
+
+      <!-- 4. Apple Wallet 버튼 -->
+      <!-- [JS] 임시로 alert()를 실행 (onclick) -->
+      <button
+        class="wallet-button"
+        onclick="alert('Apple 지갑 추가 (임시 기능)')"
+      >
+        <!-- (임시 아이콘) -->
+        <img
+          src="https://placehold.co/24x24/FF5E00/FFFFFF?text=W"
+          alt="Wallet Icon"
+        />
+        <span>Apple 지갑에 추가</span>
+      </button>
+      <!-- 4. Apple Wallet 버튼 끝 -->
+    </div>
+    <!-- 카드 레이아웃 끝 -->
+    <script src="mypagesrc/mycard.js"></script>
+  </body>
+</html>

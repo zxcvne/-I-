@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>온런 여의도 한강</title>
+  <link rel="stylesheet" href="../common/font.css">
+  <link rel="stylesheet" href="../common/header.css">
+  <link rel="stylesheet" href="./explanation.css" />
+
+  <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=6f4bc481039c09610343c34091827586&libraries=services,clusterer,drawing"></script>
+
+
+</head>
+
+<body>
+  <div class="wrapper">
+
+<!-- 상단 이미지 슬라이더 -->
+<div class="image-slider-container">
+  <div class="image-slider">
+    <!-- JavaScript에서 동적으로 이미지가 추가됩니다 -->
+  </div>
+  <div id="slidePanel">
+  <img src="../assets/images/arrow-prev-small-svgrepo-com.svg" class="arrow-btn arrow-prev" id="slideOpenBtn">
+  <img src="../assets/images/arrow-next-small-svgrepo-com.svg" class="arrow-btn arrow-next" id="slideCloseBtn">
+</div>
+</div>
+
+
+    <!-- 크루 기본 정보 -->
+    <div class="main-info">
+      <h1 id="crew-name"></h1>
+
+      <!-- 키 인포 텍스트 버전 -->
+      <div class="key-info-grid">
+        <div class="left-grid">
+          <div>
+            <span class="info-label" alt="일정">일정</span>
+            <span id="crew-schedule">0</span>
+          </div>
+          <div>
+            <span class="info-label" alt="장소">장소</span>
+            <span id="crew-location">0</span>
+          </div>
+          <div>
+            <span class="info-label" alt="인원">인원</span>
+            <span id="crew-people">0</span>
+          </div>
+        </div>
+
+        <div class="right-grid">
+          <div>
+            <span class="info-label" alt="거리">거리</span>
+            <span id="crew-distance">0</span>
+          </div>
+          <div>
+            <span class="info-label" alt="시간">시간</span>
+            <span id="crew-duration">0</span>
+          </div>
+          <div>
+            <span class="info-label" alt="난이도">트랙 난이도</span>
+            <!-- ✅ span 태그로 감싸서 배지 스타일 적용 -->
+            <span class="level-badge-wrapper">
+            <span id="crew-difficulty" class="level-badge">0</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 액션 버튼 -->
+      <div class="action-buttons">
+        <button id="bookmark-btn" title="북마크">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark" viewBox="0 0 16 16">
+  <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1z"/>
+</svg>
+        </button>
+        <button id="share-btn" title="공유">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share" viewBox="0 0 16 16">
+  <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5m-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3m11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3"/>
+</svg>
+        </button>
+      </div>
+
+
+      <!-- 설명, 출발지, 도착지 -->
+      <section class="desc">
+        <p id="crew-explanation">트랙 소개</p>
+        <div class="location-cards">
+  <div class="location-card">
+    <div class="location-header">출발지</div>
+    <div id="departure" class="location-content"></div>
+  </div>
+  
+  <div class="location-card">
+    <div class="location-header">도착지</div>
+    <div id="destination" class="location-content"></div>
+  </div>
+</div>
+
+      </section>
+
+
+    <!-- 스케줄 컨테이너 -->
+    <div class="schedule-container">
+    <!-- 스케줄 - 드래그 스크롤 가능하도록 -->
+    <div class="schedule-dates" id="schedule-dates"></div>
+    
+    <!-- ✅ 진행도 바 추가 -->
+    <div class="schedule-progress-bar">
+        <div class="schedule-progress-track" id="schedule-progress-track"></div>
+    </div>
+    
+    <div id="schedule-info" class="schedule-info"></div>
+    </div>
+
+
+
+
+
+      <!-- 하단 버튼 -->
+      <div class="btn-wrap">
+        <a href="../reserve/reserve.html" target="_blank" class="btn-apply">신청하기</a>
+      </div>
+
+
+    </div>
+  </div>
+  </div>
+
+  <script src="./explanation.js" defer></script>
+
+      <footer>
+        <p>© On Running 2025 대한민국</p>
+        <p>더 자세한 정보는 <a href="../QnA/QnA.html">문의하기</a>를 통해 연락해주세요.</p>
+    </footer>
+
+
+</body>
+
+</html>
