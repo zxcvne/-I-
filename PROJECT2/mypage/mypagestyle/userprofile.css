@@ -1,0 +1,380 @@
+/* ====================================================== */
+/* === 임시 인라인 스타일 (userprofile.html) === */
+/* ====================================================== */
+/* 참고: 
+      이 <style> 태그 내의 모든 CSS는 향후 별도의 .css 파일로 분리/대체될 예정입니다.
+      
+      - HTML 구조: <body> 내부의 <!-- 주석 -->을 참고하세요.
+      - 동적 상태: <script> 내부의 [CSS Class], [CSS State Toggle], [CSS Inline Style] 주석을 참고하세요.
+  */
+/* ====================================================== */
+
+/* 기본 마진/패딩 제거 및 폰트 설정 */
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+a {
+  text-decoration: none;
+  color: #1f2937;
+}
+
+
+/* 2. 메인 콘텐츠 레이아웃 (2단 분할) */
+.main-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* padding: 40px 30px; */
+  /* 콘텐츠가 적어도 화면 높이를 채우도록 설정 (푸터 밀림 방지) */
+
+  /* background-color: #005ecb; */
+  /* 마이페이지는 Apple SD Gothic Neo, Noto Sans KR 폰트를 사용합니다. */
+  font-family: "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+
+  width: 100%;
+  /* height: 100vh; */
+  /* background-color: #007aff; */
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* background-color: aqua; */
+}
+
+.mypage-header {
+  font-weight: 800;
+  font-size: clamp(12px, 5vw, 18px);
+}
+
+.profile-info {
+  margin-top: 30px;
+  /* 프로필 섹션과 간격 */
+  width: fit-content;
+}
+
+/* 프로필 정보 스타일 */
+.profile-info div {
+  margin-bottom: 12px;
+}
+
+.profile-info .label {
+  display: inline-block;
+  width: 150px;
+  /* 레이블 너비 고정 */
+  font-weight: 600;
+  color: #555;
+  letter-spacing: -.5px;
+}
+
+.profile-info .value {
+  display: inline-block;
+  min-width: 300px;
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  /* background-color: white; */
+  color: #111;
+  /* background-color: white; */
+}
+
+
+/* 추가 */
+/* 보기/수정 공통 박스 스타일: span, input, textarea 모두 동일 적용 */
+.profile-info .value,
+.profile-info input.value,
+.profile-info textarea.value {
+  display: inline-block;
+  min-width: 300px;
+  padding: 6px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #111;
+  box-sizing: border-box;
+}
+
+/* 입력 요소의 브라우저 기본 차이 제거 */
+.profile-info input.value,
+.profile-info textarea.value {
+  background: transparent;  /* 필요시 #fff */
+  border: 1px solid #ddd;   /* 위와 동일하게 강제 */
+  outline: none;
+  font: inherit;
+  line-height: 1.4;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* 오토필 색상/내부 그림자 무력화 (Safari/Chromium) */
+.profile-info input.value:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+  -webkit-text-fill-color: #111;
+  transition: background-color 9999s ease-out;
+}
+
+/* 추가완료 */
+
+
+
+
+/* ⭐️ [신규] 프로필 입력 필드 스타일 */
+/* [CSS State Toggle] 이 요소는 JS에 의해 display: block/none이 토글됩니다. */
+.profile-info .value-input {
+  width: 100%;
+  padding: 12px 10px;
+  font-size: 8pt;
+  color: #111;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+  cursor: text;
+  margin-top: 5px;
+  /* 패딩 포함 100% */
+}
+
+/* ⭐️ [신규] 저장 버튼 스타일 */
+/* [CSS State Toggle] 이 요소는 JS에 의해 display: block/none이 토글됩니다. */
+.save-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #2f2f2f;
+  /* 애플 블루 */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: none;
+  /* ⭐️ [수정] 기본적으로 숨김 */
+}
+
+.save-btn:hover {
+  background-color: #000000;
+}
+
+/* 3. 푸터 레이아웃 (우측 하단 고정) */
+.profile-footer {
+
+  /* background-color: #d9534f; */
+
+  margin-top: 40px;
+  /* 프로필 정보와 간격 */
+  text-align: center;
+  /* 내부 요소들 가운데 정렬 */
+}
+
+.footer-links{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  /* background-color: #eee; */
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px 30px;
+  background-color: rgb(233, 233, 233);
+  border-radius: 9999px;
+}
+
+/* 소셜 아이콘 이미지 스타일 */
+.social-links img {
+  width: 20px;
+  height: 20px;
+  transition: opacity 0.2s;
+  /* 부드러운 효과 */
+}
+
+.social-links a:hover img {
+  opacity: 0.8;
+}
+
+.footer-links {
+  margin-top: 50px;
+}
+
+.footer-links a {
+  cursor: pointer;
+  border: none;
+  color: #1f2937;
+  border-bottom: 1px solid #1f2937;
+  padding: 2px 0;
+  text-decoration: none;
+  font-size: 12px;
+  /* 부드러운 색상/크기 변화 */
+  transition: background-color 0.3s, transform 0.1s;
+  /* 아이콘과 텍스트 정렬을 위해 flex 사용 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 4. 토스트 팝업 스타일 (새로 추가) */
+/* [CSS Inline Style] 이 스타일은 JS의 showToast() 함수에서 동적으로 생성됩니다. */
+.toast-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #333;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  font-size: 14px;
+  /* 3초 동안 서서히 나타났다 사라지는 애니메이션 */
+  animation: toast-fade 3s ease-out forwards;
+}
+
+@keyframes toast-fade {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  10% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  90% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* --- 5. 회원 탈퇴 모달 스타일 (새로 추가) --- */
+/* [CSS Class] JS가 .active 클래스를 토글하여 모달을 표시/숨김 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  /* 평소엔 숨김 */
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.modal-content {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 90%;
+  position: relative;
+  text-align: left;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #aaa;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.modal-content p {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+#withdraw-email-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  /* 패딩 포함 100% */
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.modal-button-group {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-button-group button {
+  flex: 1;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#modal-cancel-btn {
+  background-color: #eee;
+  color: #333;
+}
+
+#modal-confirm-btn {
+  background-color: #d9534f;
+  /* 빨간색 계열 */
+  color: white;
+}
+
+/* [CSS State Toggle] JS가 :disabled 상태를 토글함 */
+#modal-confirm-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

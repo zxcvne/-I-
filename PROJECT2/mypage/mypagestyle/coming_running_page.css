@@ -1,0 +1,617 @@
+/* ====================================================== */
+/* === 임시 인라인 스타일 (coming_running_page.html) === */
+/* ====================================================== */
+/* 참고: 
+          이 <style> 태그 내의 모든 CSS는 향후 별도의 .css 파일로 분리/대체될 예정입니다.
+          
+          - HTML 구조: <body> 내부의 <!-- 주석 -->을 참고하세요.
+          - 동적 상태: <script> 내부의 [CSS Class], [CSS Dynamic HTML], [CSS Attribute] 주석을 참고하세요.
+          - FullCalendar: .fc- 로 시작하는 클래스들은 FullCalendar 라이브러리가 생성하며, 
+                          이 스타일 시트에서 일부 커스텀 스타일을 덮어쓰고 있습니다.
+      */
+/* ====================================================== */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+
+/* --- 2. 메인 컨테이너 --- */
+.main-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+
+}
+
+/* --- 3. 달력 컨테이너 --- */
+#calendar-container {
+  /* background-color: #ffffff; */
+  /* border-radius: 8px; */
+  padding: 25px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); */
+  margin-bottom: 20px;
+
+  /* background-color: aqua; */
+}
+
+/* FullCalendar 스타일 커스텀 */
+/* [CSS] JS(FullCalendar)가 생성하는 .fc- 클래스 스타일 덮어쓰기 */
+#calendar {
+  /* width: 100%; */
+  max-width: 1100px;
+  margin: 0 auto;
+  font-family: "Apple SD Gothic Neo", "Noto Sans KR", -apple-system, BlinkMacSystemFont, sans-serif !important;
+
+  /* background-color: yellow; */
+}
+
+/* 캘린더 상단바 */
+.fc-header-toolbar {
+  /* margin-bottom: 20px; */
+  /* background-color: blue !important; */
+  position: relative;
+}
+
+.fc-toolbar-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* 정확히 중앙 */
+  /* background-color: green !important; */
+  margin: 0;
+  /* 기본 여백 제거 */
+  text-align: center;
+}
+
+.fc-button-primary {
+  background-color: transparent !important;
+  color: black !important;
+  border: none !important;
+  /* border-radius: 20px !important; */
+  /* opacity: 0.8; */
+}
+
+.fc-button-primary:hover {
+  opacity: 0.5 !important;
+}
+
+.fc-event-main {
+  font-size: 0.85em;
+  letter-spacing: -0.02em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 2px 4px;
+
+}
+
+/* 달력 theme 추가*/
+/* 기본 변수 오버라이드 */
+:root {
+  --fc-border-color: #e0e0e0;
+  --fc-day-bg-color: #ffffff;
+  --fc-text-color: #333333;
+  --fc-event-bg-color: #66b2ff;
+  --fc-event-text-color: #ffffff;
+  --fc-button-bg-color: transparent;
+  --fc-button-border-color: transparent;
+  --fc-button-text-color: #333333;
+}
+
+/* 날짜 그리드 */
+.fc-daygrid-day {
+  background-color: var(--fc-day-bg-color);
+  border: 0 !important;
+}
+
+.fc-daygrid-body .fc-scrollgrid {
+  border: 0 !important;
+}
+
+.fc .fc-col-header-cell {
+  padding: 8px 0;
+  font-weight: 500;
+  color: var(--fc-text-color);
+}
+
+/* 이벤트 스타일 */
+.fc-event {
+  background-color: var(--fc-event-bg-color) !important;
+  color: var(--fc-event-text-color) !important;
+  border: none !important;
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 0.875rem;
+}
+
+/* 오늘 날짜 강조 */
+.fc-day-today {
+  background-color: white !important;
+  font-weight: 800;
+  color: #000000
+}
+
+/* 추가완료 */
+
+
+/* ⭐️ [CSS Class] JS가 .event-upcoming, .event-past 클래스를 이벤트에 동적으로 할당 */
+/* 참여할 */
+.fc-event.event-upcoming {
+  background-color: #4f46e5 !important;
+  /* Indigo */
+  border-color: #4f46e5 !important;
+}
+
+/* 참여완료 */
+.fc-event.event-past {
+  background-color: #6b7280 !important;
+  /* Gray */
+  border-color: #6b7280 !important;
+  opacity: 0.8;
+}
+
+
+
+
+/* -------------------------------- 4. 검색 및 필터 UI -------------------------------- */
+.search-container {
+  margin-bottom: 20px;
+}
+
+/* [CSS State Toggle] JS가 이 버튼에 .active 클래스를 토글함 */
+#search-toggle-btn {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); */
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+#search-toggle-btn:hover {
+  background-color: #f7f7f7;
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); */
+}
+
+/* [CSS Class] JS가 토글하는 활성 상태 스타일 */
+#search-toggle-btn.active {
+  background-color: #f0f0f0;
+  /* color: #4f46e5; */
+}
+
+
+
+
+
+/* [CSS State Toggle] JS가 .active 클래스를 토글하여 패널을 표시/숨김 */
+.filter-panel {
+  background-color: #fff;
+  border-radius: 8px;
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); */
+  border: 1px solid #eee;
+  max-height: 0;
+  /* 숨김 상태 */
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out, opacity 0.3s ease-out,
+    padding 0.4s ease-out;
+  padding: 0 25px;
+  margin-bottom: 20px;
+  /* ⭐️ 필터와 탭 사이 간격 */
+}
+
+/* [CSS Class] JS가 토글하는 활성 상태 스타일 */
+.filter-panel.active {
+  max-height: 500px;
+  /* 표시 상태 */
+  opacity: 1;
+  padding: 25px;
+}
+
+.filter-columns {
+  display: flex;
+  gap: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+.filter-column {
+  flex: 1;
+  border-right: 1px solid #f0f0f0;
+  padding: 0 15px;
+}
+
+.filter-column:last-child {
+  border-right: none;
+}
+
+.filter-column h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+  margin: 0 0 15px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.date-filter-group {
+  display: flex;
+  gap: 10px;
+}
+
+.filter-select {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fafafa;
+}
+
+.filter-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.filter-list li {
+  margin-bottom: 10px;
+}
+
+.filter-list label {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.filter-list label:hover {
+  background-color: #f9f9f9;
+}
+
+.filter-list input[type="radio"] {
+  margin-right: 8px;
+  accent-color: #000000;
+}
+
+.filter-list[data-filter-group="level"] {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  max-height: none;
+  overflow-y: visible;
+}
+
+.filter-list[data-filter-group="level"] li {
+  margin-bottom: 0;
+}
+
+.filter-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.filter-actions button {
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid #ddd;
+}
+
+#filter-reset-btn {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+#filter-apply-btn {
+  background-color: #000000;
+  color: #fff;
+  border-color: #000000;
+}
+
+/* ------------------------------------------------------------------- */
+/* --- ⭐️ [신규] 탭 스타일 (my_running_page에서 가져옴) --- */
+/* ------------------------------------------------------------------- */
+.tab-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* [CSS State Toggle] JS가 .active 클래스를 토글하여 활성/비활성 탭 스타일 제어 */
+.tab-btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  letter-spacing: -0.5px;
+  font-weight: 600;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #b9bec7;
+  /* 비활성 탭 색상 */
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  /* 하단 테두리와 겹치도록 */
+}
+
+/* [CSS Class] JS가 토글하는 활성 탭 스타일 */
+.tab-btn.active {
+  color: #000000;
+  /* 활성 탭 색상 */
+  border-bottom-color: #000000;
+}
+
+/* [CSS State Toggle] JS가 .active 클래스를 토글하여 탭 콘텐츠 표시/숨김 */
+.tab-content {
+  display: none;
+  /* 기본적으로 모든 탭 콘텐츠 숨김 */
+}
+
+/* [CSS Class] JS가 토글하는 활성 탭 콘텐츠 스타일 */
+.tab-content.active {
+  display: block;
+  /* 활성 탭 콘텐츠만 표시 */
+}
+
+/* ------------------------------------------------------------------- */
+/* --- 5. ⭐️ 필터/정렬/목록 스타일 (my_running_page에서 가져옴) --- */
+/* ------------------------------------------------------------------- */
+.results-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #1f2937;
+  padding-bottom: 10px;
+  /* border-bottom: 2px solid #e0e0e0; */
+  flex-grow: 1;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+
+  /* background-color: aqua; */
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  padding: 0 10px;
+
+  /* background-color: #3730a3; */
+}
+
+.sort-buttons {
+  display: flex;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* [CSS State Toggle] JS가 .active 클래스 및 data-order 속성을 토글함 */
+.sort-btn {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.sort-btn:hover {
+  background-color: #e9e9e9;
+}
+
+/* [CSS Class] JS가 토글하는 활성 상태 */
+.sort-btn.active {
+  background-color: #000000;
+  color: white;
+  font-weight: 600;
+  border-color: #000000;
+}
+
+.sort-btn::after {
+  content: "";
+  display: inline-block;
+  width: 0.8em;
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+/* [CSS Attribute] JS가 토글하는 속성값에 따라 화살표 표시 */
+.sort-btn.active[data-order="asc"]::after {
+  content: "↑";
+}
+
+.sort-btn.active[data-order="desc"]::after {
+  content: "↓";
+}
+
+/* [CSS Dynamic HTML] JS가 이 리스트의 내용을 동적으로 생성 */
+.registered-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* 1열 목록 */
+  gap: 20px;
+}
+
+/* [CSS Dynamic HTML] JS가 생성하는 .registered-item 스타일 */
+.registered-item {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 20px;
+  border-radius: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.registered-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.item-info-box {
+  flex-grow: 1;
+}
+
+.item-info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.item-info-row .info-label {
+  font-weight: 500;
+  color: #4b5563;
+}
+
+.item-info-row .info-value {
+  color: #333;
+  font-weight: 600;
+}
+
+.item-link {
+
+  padding: 6px 12px;
+  border-radius: 9999px;
+  background-color: transparent;
+  border: 1px solid #000000;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000000;
+  display: block;
+  text-align: right;
+  text-decoration: none;
+  margin-top: 10px;
+
+  /* background-color: #3730a3; */
+}
+
+.item-link:hover {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+/* [CSS Dynamic HTML] JS가 생성하는 '목록 없음' 메시지 스타일 */
+.empty-list-message {
+  color: #6b7280;
+  text-align: center;
+  padding: 40px;
+  background: #fff;
+  border-radius: 8px;
+}
+
+/* ⭐️ [신규] '참여 완료' 뱃지 */
+.status-badge {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+.status-badge.completed {
+  background: #000000;
+  color: #ffffff;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+  .header-container {
+    padding: 15px 20px;
+  }
+
+  #calendar-container,
+  .filter-panel.active {
+    padding: 15px;
+  }
+
+  .fc-toolbar-title {
+    font-size: 1.2em !important;
+  }
+
+  .filter-columns {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .filter-column {
+    border-right: none;
+    padding: 0 5px;
+  }
+
+  .date-filter-group {
+    flex-direction: column;
+  }
+
+  /* ⭐️ 탭 모바일 */
+  .tab-container {
+    gap: 5px;
+  }
+
+  .tab-btn {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  /* ⭐️ 결과 카드 모바일 */
+  .results-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+
+  .sort-buttons {
+    justify-content: space-around;
+  }
+
+  .registered-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .item-link {
+    text-align: left;
+    margin-top: 15px;
+  }
+
+  /* ⭐️ [신규] 뱃지 모바일 */
+  .status-badge {
+    margin-top: 15px;
+  }
+}

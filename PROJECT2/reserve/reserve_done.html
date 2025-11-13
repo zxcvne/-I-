@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>예약 완료</title>
+  <link rel="stylesheet" href="./reserve_done.css">
+</head>
+
+<body>
+  <div class="done-wrap">
+    <div class="circle"></div>
+    <h1 id="username"></h1>
+    <p>예약이 정상적으로 완료되었습니다.</p>
+    <button onclick="location.href='../main/main.html'">홈으로 돌아가기</button>
+  </div>
+
+  <script>
+    // 🆕 수정: sessionStorage에서 이름 가져오고, 없으면 기본값
+    const reserveName = sessionStorage.getItem("reserve_name") || "고객";
+    document.getElementById("username").innerText = reserveName + "님";
+    
+    // 🆕 추가: 예약 완료 후 sessionStorage 정리 (선택사항)
+    // sessionStorage.removeItem("reserve_name");
+  </script>
+</body>
+</html>

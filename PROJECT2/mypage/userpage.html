@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MY PAGE</title>
+
+  <link rel="stylesheet" href="../common/font.css" />
+  <link rel="stylesheet" href="../common/header.css" />
+
+  <!-- **경로수정** -->
+  <link rel="stylesheet" href="../mypage/mypagestyle/userpage.css" />
+</head>
+
+<body>
+  <script src="../common/header.js"></script>
+  <!-- 메인 콘텐츠 컨테이너 시작 -->
+  <div class="main-container">
+    <!-- 1. 프로필 섹션: 사용자 기본 정보, 통계, 버튼 표시 -->
+
+    <div class="mypage-header">
+      <span id="userNameDisplay">김러닝</span>
+      <span>님 안녕하세요</span>
+    </div>
+
+    <div class="profile-container">
+      <!-- 프로필 텍스트 정보 -->
+      <div class="profile-info-box">
+        <!-- 통계 -->
+        <div class="profile-stats-box">
+          <!-- <div class="profile-stats-item">
+            <span class="profile-bio" id="userBioDisplay">
+              혼자서도 잘 달리고, 함께 달리는 것도 좋아하는 러너입니다! 🏃‍♂️
+            </span>
+          </div> -->
+
+          <script>
+            (function() {
+              try {
+                const loggedInUser = sessionStorage.getItem("loggedInUser");
+                if (loggedInUser) {
+                  const user = JSON.parse(loggedInUser);
+                  const userName = user.name || null;
+                  
+                  if (userName) {
+                    // 1. 이름 즉시 교체
+                    const userNameEl = document.getElementById("userNameDisplay");
+                    if (userNameEl) {
+                      userNameEl.textContent = userName;
+                    }
+                    
+                    // 2. Bio 텍스트 즉시 교체
+                    const userBioEl = document.getElementById("userBioDisplay");
+                    if (userBioEl) {
+                      userBioEl.textContent = `${userName}님은 함께 달리는 기쁨을 아는 러너입니다! 🏃‍♂️`;
+                    }
+                  }
+                }
+              } catch (e) {
+                console.error("인라인 스크립트 오류:", e);
+                // 오류 발생 시 기본 HTML 텍스트("비회원")가 표시됩니다.
+              }
+            })();
+          </script>
+
+          <div class="profile-stats-item">
+            <span class="profile-description">ON RUNNING과 지금까지 총</span>
+            <!-- [JS Target] JS가 총 참여 횟수를 채워넣는 곳 -->
+            <span class="stat-value" id="totalRunsDisplay">0</span>
+            <span class="profile-description">회의 러닝 프로그램을 완주하셨네요.</span>
+          </div>
+          <div class="profile-stats-item">
+            <span class="profile-description">ON RUNNING과 함께 총</span>
+            <!-- [JS Target] JS가 총 거리를 채워넣는 곳 -->
+            <span class="stat-value" id="totalDistanceDisplay">0.0</span>
+            <span class="profile-description"> km를 달렸습니다.</span>
+          </div>
+        </div>
+
+        <!-- 버튼 그룹 -->
+        <div class="profile-buttons-box">
+          <button class="link-btn card-view-button" id="viewMyCardBtn">
+            <!-- ... (QR 코드 SVG) ... -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="btn-icon lucide lucide-qr-code">
+            <rect width="5" height="5" x="3" y="3" rx="1" />
+            <rect width="5" height="5" x="16" y="3" rx="1" />
+            <rect width="5" height="5" x="3" y="16" rx="1" />
+            <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
+            <path d="M21 21v.01" />
+            <path d="M12 7v3a2 2 0 0 1-2 2H7" />
+            <path d="M3 12h.01" />
+            <path d="M12 3h.01" />
+            <path d="M12 16h.01" />
+            <path d="M16 12h.01" />
+            <path d="M21 12h.01" />
+          </svg>
+          <span>나의 카드</span>
+        </button>
+        <div class="wrapper">
+            
+
+          <!-- 로그아웃 버튼 예시 (프로필 버튼 옆이나 하단에 배치) -->
+          <button id="logoutBtn" class="link-btn logout-button">로그아웃</button>
+            
+      
+            <!-- [JS Target] '프로필 수정' 페이지 이동 버튼 -->
+            <button class="link-btn edit-profile-button" id="editProfileBtn">
+              프로필 수정
+            </button>
+            <!-- [JS Target] '나의 카드' 팝업 버튼 -->
+            <!-- [JS Target] 'MY GEAR' 임시 버튼 -->
+            <button class="link-btn my-gear-button" id="myGearBtn">
+              MY GEAR
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ⭐️ [신규] 카드 2: 다음 러닝 -->
+      <div class="dashboard-card-item next-run-card">
+        <h2 class="card-title">나의 다음 러닝 프로그램</h2>
+        <!-- [JS Dynamic Content] JS가 '다음 러닝' 정보를 채워넣는 곳 -->
+        <!-- ⭐️ '다음 러닝' 정보가 표시될 새 컨테이너 -->
+        <div class="next-run-info-card" id="nextRunInfoDisplay">
+          <p class="no-run-message">예정된 러닝을 찾는 중...</p>
+        </div>
+      </div>
+
+
+    </div>
+    <!-- 1. 프로필 섹션 끝 -->
+
+    <!-- 2. 대시보드 섹션: 3개 카드 (나의 러닝, 스탬프, 북마크) -->
+    <div class="dashboard-container">
+      <div class="dashboard-list">
+        <!-- 카드 1: 나의 러닝 -->
+        <!-- [JS State] 비로그인 시 이 카드에 .restricted 클래스 추가됨 -->
+        <div class="dashboard-card-item">
+          <h2 class="card-title">나의 러닝</h2>
+
+          <!-- ⭐️ [신규] 예정된 러닝 건수 표시 -->
+          <span class="stat-value" id="upcomingRunsCountDisplay">0</span>
+
+          <!-- [JS Target] '더 보기' 버튼 (coming_running_page.html로 이동) -->
+          <button class="card-btn" id="upcomingRunsBtn">더보기 ></button>
+        </div>
+        <!-- 카드 2: 북마크 -->
+        <!-- [JS State] 비로그인 시 이 카드에 .restricted 클래스 추가됨 -->
+        <div class="dashboard-card-item">
+          <h2 class="card-title">북마크</h2>
+          <!-- [JS Target] 북마크 개수 표시 -->
+          <span class="stat-value" id="bookmarkCountDisplay">0</span>
+          <!-- [JS Target] '북마크' 페이지 이동 버튼 -->
+          <button class="card-btn" id="viewBookmarksBtn">목록보기 ></button>
+        </div>
+
+        <!-- 카드 3: 스탬프 현황 -->
+        <!-- [JS State] 비로그인 시 이 카드에 .restricted 클래스 추가됨 -->
+        <div class="dashboard-card-item">
+          <h2 class="card-title">스탬프</h2>
+          <!-- [JS Target] 스탬프 개수 표시 -->
+          <span class="stat-value" id="stampCountDisplay">0</span>
+          <!-- [JS Target] 스탬프 모달 열기 버튼 -->
+          <button class="card-btn" id="stampListBtn">더보기 ></button>
+        </div>
+
+      </div>
+    </div>
+    <!-- 2. 대시보드 섹션 끝 -->
+  </div>
+  <!-- 메인 콘텐츠 컨테이너 끝 -->
+  <div class="footer-container">
+    <p>&copy; 2025 ON RUNNING. ALL RIGHTS RESERVED.</p>
+  </div>
+
+  <!-- 푸터 시작 -->
+  <!-- 푸터 끝 -->
+
+  <!-- ====================================================== -->
+  <!-- =================== 모달 영역 시작 =================== -->
+  <!-- ====================================================== -->
+
+  <!-- ⭐️ 스탬프 모달 -->
+  <!-- [JS Target] JS가 이 모달에 .active 클래스를 추가/제거하여 표시/숨김 -->
+  <div class="modal-overlay" id="stampModalOverlay">
+    <div class="modal-content modal-sm">
+      <!-- [JS Target] 모달 닫기 버튼 -->
+      <button class="modal-close-btn" id="stampModalCloseBtn">&times;</button>
+      <h2>스탬프 페이지</h2>
+      <!-- [JS Dynamic Content] 스탬프 그리드 내용이 채워지는 곳 -->
+      <div class="stamp-grid">
+        <!-- JS에 의해 동적으로 채워집니다 -->
+      </div>
+      <!-- [JS Target] 스탬프 상태 메시지 -->
+      <p class="stamp-status" id="stampModalStatus">앞으로 0개 남았습니다.</p>
+    </div>
+  </div>
+  <!-- ⭐️ 스탬프 모달 끝 ⭐️ -->
+
+  <!-- ⭐️ 북마크 모달 -->
+  <!-- [JS Target] JS가 이 모달에 .active 클래스를 추가/제거하여 표시/숨김 -->
+  <div class="modal-overlay" id="bookmarkModalOverlay">
+    <div class="modal-content">
+      <!-- [JS Target] 모달 닫기 버튼 -->
+      <button class="modal-close-btn" id="bookmarkModalCloseBtn">
+        &times;
+      </button>
+      <h2>북마크한 러닝 목록</h2>
+      <div class="bookmark-modal-list">
+        <!-- [JS Dynamic Content] 북마크 리스트 내용이 채워지는 곳 -->
+        <!-- .registered-list 스타일이 여기서 재사용됩니다 -->
+        <div class="registered-list" id="bookmarkModalList">
+          <!-- 여기에 북마크 데이터 기반으로 항목이 채워집니다. -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ⭐️ 북마크 모달 끝 ⭐️ -->
+
+  <!-- ====================================================== -->
+  <!-- ================= JAVASCRIPT 시작 ==================== -->
+  <!-- ====================================================== -->
+
+  <!-- ⭐️ [수정] 분리된 userpage.js 파일 링크 경로 수정 -->
+  <!-- userpage.js -> ../../mypagesrc/userpage.js -->
+  <script src="mypagesrc/userpage.js"></script>
+
+  <!-- ⭐️ [수정] 공통 헤더 JS 추가 (경로 수정) -->
+  <!-- ../common/header.js -> ../../../common/header.js -->
+  <script src="../common/header.js"></script>
+</body>
+
+</html>

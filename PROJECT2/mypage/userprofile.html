@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MY PAGE</title>
+
+  <link rel="stylesheet" href="../common/font.css" />
+  <link rel="stylesheet" href="../common/header.css" />
+  <link rel="stylesheet" href="../mypage/mypagestyle/userprofile.css" />
+</head>
+
+<body>
+  <!-- 1-1. 공통 헤더 스크립트 -->
+  <script src="../common/header.js"></script>
+  <!-- 1-2. 메인 콘텐츠 영역 -->
+  <main class="main-container">
+    <section class="profile-section">
+      <h2 class="mypage-header">나의 프로필</h2>
+      <!-- 프로필 정보 표시 영역 시작 -->
+      <div class="profile-info">
+        <div>
+          <span class="label">이메일(ID)</span>
+          <!-- [JS Target] [JS Dynamic Text] 이메일 텍스트가 채워짐 -->
+          <span class="value" id="profile-email"></span>
+        </div>
+        <div>
+          <span class="label">이름</span>
+          <!-- [JS Target] [JS Dynamic Text] 이름 텍스트가 채워짐 -->
+          <span class="value" id="profile-name"></span>
+        </div>
+        <div>
+          <span class="label">닉네임</span>
+          <!-- [JS Target] [JS Dynamic Text] 닉네임 텍스트가 채워짐 -->
+          <!-- [JS State Toggle] '정보 수정' 시 숨겨짐 (display: none) -->
+          <span class="value" id="profile-nickname-display"></span>
+          <!-- [JS Target] [JS State Toggle] '정보 수정' 시 표시됨 (display: block) -->
+          <input type="text" class="value value-input" id="profile-nickname-input" style="display: none" />
+        </div>
+        <div>
+          <span class="label">전화번호</span>
+          <!-- [JS Target] [JS Dynamic Text] 전화번호 텍스트가 채워짐 -->
+          <!-- [JS State Toggle] '정보 수정' 시 숨겨짐 (display: none) -->
+          <span class="value" id="profile-phone-display"></span>
+          <!-- [JS Target] [JS State Toggle] '정보 수정' 시 표시됨 (display: block) -->
+          <input type="text" class="value value-input" id="profile-phone-input" placeholder="010-0000-0000"
+            style="display: none" />
+        </div>
+        <div>
+          <span class="label">주소</span>
+          <!-- [JS Target] [JS Dynamic Text] 주소 텍스트가 채워짐 -->
+          <!-- [JS State Toggle] '정보 수정' 시 숨겨짐 (display: none) -->
+          <span class="value" id="profile-address-display"></span>
+          <!-- [JS Target] [JS State Toggle] '정보 수정' 시 표시됨 (display: block) -->
+          <input type="text" class="value value-input" id="profile-address-input" placeholder="주소를 입력하세요"
+            style="display: none" />
+        </div>
+      </div>
+      <!-- 프로필 정보 표시 영역 끝 -->
+
+      <!-- [JS Target] [JS State Toggle] '정보 수정' 시 표시됨 (display: block) -->
+      <button class="save-btn" id="save-profile-btn">저장하기</button>
+
+      <!-- 프로필 하단 푸터 (소셜 링크, 기능 링크) 시작 -->
+      <div class="profile-footer">
+        <div class="social-links">
+          <!-- (임시 소셜 링크) -->
+          <a href="#" id="socialLinkApple">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="" />
+          </a>
+          <a href="#" id="socialLinkGoogle">
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Google_%22G%22_logo.svg/768px-Google_%22G%22_logo.svg.png"
+              alt="" />
+          </a>
+        </div>
+        <div class="footer-links">
+          <a href="#">알림설정 ></a>
+          <!-- [JS Target] [JS State Toggle] '정보 수정' 시 숨겨짐 (display: none) -->
+          <a id="edit-profile-btn">정보수정 ></a>
+          <!-- [JS Target] 회원 탈퇴 모달 열기 버튼 -->
+          <a id="withdraw-link">회원탈퇴 ></a>
+        </div>
+      </div>
+      <!-- 프로필 하단 푸터 끝 -->
+    </section>
+    <!-- 오른쪽 (프로필 섹션) 끝 -->
+  </main>
+  <!-- 메인 콘텐츠 영역 끝 -->
+
+  <!-- --- 2. 회원 탈퇴 모달 HTML --- -->
+  <!-- [JS Target] [CSS Class] JS가 .active 클래스를 토글하여 표시/숨김 -->
+  <div class="modal-overlay" id="withdraw-modal-overlay">
+    <div class="modal-content">
+      <!-- [JS Target] 모달 닫기 버튼 -->
+      <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+      <h2>회원 탈퇴</h2>
+      <p>
+        정말 탈퇴하시겠습니까? 탈퇴를 원하시면, 계정 확인을 위해 가입 시
+        사용한 이메일 주소를 정확히 입력해주세요.
+      </p>
+
+      <!-- [JS Target] 이메일 입력 감지 -->
+      <input type="email" id="withdraw-email-input" placeholder="이메일 주소를 입력하세요" />
+
+      <div class="modal-button-group">
+        <!-- [JS Target] 모달 닫기 버튼 -->
+        <button id="modal-cancel-btn">취소</button>
+        <!-- [JS Target] [CSS State Toggle] JS가 :disabled 상태를 토글함 -->
+        <button id="modal-confirm-btn" disabled>탈퇴 확인</button>
+      </div>
+    </div>
+  </div>
+  <!-- 회원 탈퇴 모달 끝 -->
+  <script src="mypagesrc/userprofile.js"></script>
+</body>
+
+</html>
